@@ -1,6 +1,7 @@
 // lms-service/src/main/java/com/credable/lms/config/SoapConfig.java
 package com.credable.lms.config;
 
+import org.apache.http.auth.UsernamePasswordCredentials;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,7 +53,8 @@ public class SoapConfig {
     @Bean
     public HttpComponentsMessageSender httpComponentsMessageSender() {
         HttpComponentsMessageSender httpComponentsMessageSender = new HttpComponentsMessageSender();
-        httpComponentsMessageSender.setCredentials(username, password);
+        UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(username, password);
+        httpComponentsMessageSender.setCredentials(credentials);
         return httpComponentsMessageSender;
     }
 }
